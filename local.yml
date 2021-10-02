@@ -12,11 +12,11 @@
       become: true
       copy:
         src: files/concrete_monk.jpg
-        dest: "/opt/wallpaper.jpg"
+        dest: "/usr/share/backgrounds/ansible-wallpaper.jpg"
 
     - name: Set GNOME Wallpaper
       become_user: "{{ansible_env.SUDO_USER}}"
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
-        value: "'/opt/wallpaper.jpg'"
+        value: "'file:///usr/share/backgrounds/ansible-wallpaper.jpg'"
         state: present
