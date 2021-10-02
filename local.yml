@@ -15,11 +15,11 @@
         dest: "/home/{{ansible_env.SUDO_USER}}/.wallpaper.jpg"
         owner: "{{ansible_env.SUDO_USER}}"
         group: "{{ansible_env.SUDO_USER}}"
-        mode: 600
+        mode: 500
 
     - name: Set GNOME Wallpaper
       become_user: "{{ansible_env.SUDO_USER}}"
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
-        value: "'file:///home/{{ansible_env.SUDO_USER}}/.wallpaper.jpg'"
+        value: "'~/.wallpaper.jpg'"
         state: present
