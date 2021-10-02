@@ -12,22 +12,11 @@
       become: true
       copy:
         src: files/concrete_monk.jpg
-        dest: "/home/{{ansible_env.SUDO_USER}}/.wallpaper.jpg"
-        owner: "{{ansible_env.SUDO_USER}}"
-        group: "{{ansible_env.SUDO_USER}}"
-        mode: 500
-
-    - name: tricky trick
-      shell: "a=\"'file:///home/\"; b=\"/.wallpaper.jpg'\"; echo ${a}{{ansible_env.SUDO_USER}}${b}"
-      register: result
-
-    - name: Print return information from the previous task
-      ansible.builtin.debug:
-        msg: "result: {{result}}"
+        dest: "/opt/wallpaper.jpg"
 
     - name: Set GNOME Wallpaper
       become_user: "{{ansible_env.SUDO_USER}}"
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
-        value: "{{result.stdout}}"
+        value: "'/opt/wallpaper.jpg'"
         state: present
