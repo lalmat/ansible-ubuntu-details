@@ -22,3 +22,4 @@
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
         value: "'file:///home/{{ansible_env.SUDO_USER}}/.wallpaper.jpg'"
+        state: present
