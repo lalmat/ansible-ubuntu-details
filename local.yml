@@ -23,12 +23,11 @@
 
     - name: Print return information from the previous task
       ansible.builtin.debug:
-        var: result
-        verbosity: 2
+        msg: "result: {{result}}"
 
     - name: Set GNOME Wallpaper
       become_user: "{{ansible_env.SUDO_USER}}"
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
-        value: result
+        value: "{{result}}"
         state: present
