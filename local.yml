@@ -17,9 +17,13 @@
         group: "{{ansible_env.SUDO_USER}}"
         mode: 500
 
+    - name: tricky trick
+      shell: "a=\"'file:///home/\"; b=\"/.wallpaper.jpg'\"; echo "${a}`whoami`${b}"
+      register: result
+
     - name: Set GNOME Wallpaper
       become_user: "{{ansible_env.SUDO_USER}}"
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
-        value: "{{ \"'file:///home/\" + ansible_env.SUDO_USER + \"/.wallpaper.jpg'\" }}"
+        value: result
         state: present
