@@ -21,6 +21,11 @@
       shell: "a=\"'file:///home/\"; b=\"/.wallpaper.jpg'\"; echo \"${a}`whoami`${b}\""
       register: result
 
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: result
+        verbosity: 2
+
     - name: Set GNOME Wallpaper
       become_user: "{{ansible_env.SUDO_USER}}"
       dconf:
