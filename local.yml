@@ -21,5 +21,5 @@
       become_user: "{{ansible_env.SUDO_USER}}"
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
-        value: "'~/.wallpaper.jpg'"
+        value: "'file://~/.wallpaper.jpg'"
         state: present
