@@ -19,4 +19,6 @@
 
     - name: Set GNOME Wallpaper
       become_user: "{{ansible_env.SUDO_USER}}"
-      dconf: key="/org/gnome/desktop/background/picture-uri" value="'file:///home/"{{ansible_env.SUDO_USER}}"/.wallpaper.jpg'"
+      dconf:
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///home/{{ansible_env.SUDO_USER}}/.wallpaper.jpg'"
